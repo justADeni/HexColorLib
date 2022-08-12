@@ -3,18 +3,17 @@
 Simple library for using hex color codes in spigot messages
 
 to add to your project:
-
-<myxml>
+```xml
 <repositories>
-		<repository>
-		    <id>jitpack.io</id>
-		    <url>https://jitpack.io</url>
-		</repository>
-	</repositories>
+	<repository>
+		<id>jitpack.io</id>
+		<url>https://jitpack.io</url>
+	</repository>
+</repositories>
   
-  <dependency>
+<dependency>
 	    <groupId>com.github.justADeni</groupId>
 	    <artifactId>HexColorLib</artifactId>
 	    <version>Tag</version>
-	</dependency>
-  </myxml>
+</dependency>
+```
