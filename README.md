@@ -2,6 +2,14 @@
 # HexColorLib
 Simple library for using hex color codes in spigot messages
 
+## Examples
+
+code: `#B511BAThis is example monocolor message`
+![monocolor](https://github.com/justADeni/HexColorLib/src/resources/monocolor.png?raw=true)
+
+code: `#B511BAThis is example multi-color message#11BAB4`
+![monocolor](https://github.com/justADeni/HexColorLib/src/resources/multicolor.png?raw=true)
+
 ## Usage
 - The string has to either contain
 	- one color code before message e.g. `#da0808` + msg
