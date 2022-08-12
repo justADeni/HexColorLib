@@ -1,6 +1,6 @@
 [![](https://jitpack.io/v/justADeni/HexColorLib.svg)](https://jitpack.io/#justADeni/HexColorLib)
 # HexColorLib
-Simple library for using hex color codes in spigot messages
+Simple library for using hex color codes in spigot strings
 
 ## Examples
 
