@@ -10,7 +10,7 @@ Simple library for using hex color codes in spigot messages
 	
 - on any such String, simply .color()
 
-## To use as dependency
+## To add as dependency
 - add these to your pom.xml:
 
 ```xml
