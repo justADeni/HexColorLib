@@ -4,11 +4,11 @@ Simple library for using hex color codes in spigot messages
 
 ## Examples
 
-`(#B511BAThis is example monocolor message).color()`
+`("#B511BAThis is example monocolor message").color()`
 
 ![monocolor](https://github.com/justADeni/HexColorLib/blob/master/src/resources/monocolor.png?raw=true)
 
-`(#B511BAThis is example multi-color message#11BAB4).color()`
+`("#B511BAThis is example multi-color message#11BAB4").color()`
 
 ![monocolor](https://github.com/justADeni/HexColorLib/blob/master/src/resources/multicolor.png?raw=true)
 
@@ -18,7 +18,6 @@ Simple library for using hex color codes in spigot messages
 	- two color codes, one before and one after message e.g. `#08bada` + msg + `#1b9135`
 	- or old-school & characters with appropriate color codes anywhere in message
 	
-- hex codes are case insensitive	
 - on any such String, simply .color()
 
 ## To add as dependency
@@ -35,4 +34,15 @@ Simple library for using hex color codes in spigot messages
 	<artifactId>HexColorLib</artifactId>
 	<version>Tag</version>
 </dependency>
+```
+
+```gradle
+repositories {
+	...
+	maven { url 'https://jitpack.io' }
+}
+
+dependencies {
+	implementation 'com.github.justADeni:HexColorLib:Tag'
+}
 ```
