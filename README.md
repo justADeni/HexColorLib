@@ -21,8 +21,8 @@ Simple library for using hex color codes in spigot messages
 - on any such String, simply .color()
 
 ## To add as dependency
-- add these to your pom.xml:
 
+### Maven
 ```xml
 <repository>
 	<id>jitpack.io</id>
@@ -36,6 +36,7 @@ Simple library for using hex color codes in spigot messages
 </dependency>
 ```
 
+### Gradle
 ```gradle
 repositories {
 	...
