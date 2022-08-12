@@ -9,6 +9,7 @@ Simple library for using hex color codes in spigot messages
 	- or old-school & characters with appropriate color codes anywhere in message
 	
 - on any such String, simply .color()
+- case insensitive
 
 ## To add as dependency
 - add these to your pom.xml:
