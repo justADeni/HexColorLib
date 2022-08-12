@@ -39,7 +39,6 @@ Simple library for using hex color codes in spigot messages
 ### Gradle
 ```gradle
 repositories {
-	...
 	maven { url 'https://jitpack.io' }
 }
 
