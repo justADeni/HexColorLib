@@ -1,7 +1,6 @@
 package com.github.justadeni
 
 import net.md_5.bungee.api.ChatColor
-import java.lang.Exception
 
 object HexColorLib {
     /*
