@@ -25,7 +25,7 @@ Simple library for using hex color codes in spigot strings
 val example = "#B511BAExample"
 example.color()
 ```
-
+- then sendMessage it to recipient
 ## Implementation in Java
 
 ```java
@@ -33,7 +33,7 @@ private static HexColorLib hex = HexColorLib.INSTANCE;
 String example = "#B511BAExample";
 hex.color(example)
 ```
-
+- then sendMessage it to recipient
 ## To add as dependency
 
 ### Maven
