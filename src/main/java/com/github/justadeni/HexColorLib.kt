@@ -13,9 +13,6 @@ object HexColorLib {
 
     fun String.color(): String {
 
-        if (this.contains("&"))
-            return ChatColor.translateAlternateColorCodes('&',this)
-
         when (this.count{it == '#'}) {
             1 -> {
                 val messages = this.split("#")
@@ -103,7 +100,7 @@ object HexColorLib {
                 return returnMessage
             }
             else -> {
-                return this
+                return ChatColor.translateAlternateColorCodes('&',this)
             }
         }
     }
