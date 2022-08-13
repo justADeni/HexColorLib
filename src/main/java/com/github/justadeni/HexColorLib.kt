@@ -146,5 +146,4 @@ object HexColorLib {
         else
             num
     }
-    //test commit
 }
