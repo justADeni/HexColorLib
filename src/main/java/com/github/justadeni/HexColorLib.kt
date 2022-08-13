@@ -1,15 +1,9 @@
 package com.github.justadeni
 
 import net.md_5.bungee.api.ChatColor
+import java.lang.Exception
 
 object HexColorLib {
-    /*
-    @JvmStatic
-    fun main(args: Array<String>) {
-        println(("#11BA37" + "This is a test message").color())
-    }
-    */
-
 
     fun String.color(): String {
 
@@ -23,6 +17,9 @@ object HexColorLib {
                 val r1 = hexToRgb(startTag.substring(0, 2))
                 val g1 = hexToRgb(startTag.substring(2, 4))
                 val b1 = hexToRgb(startTag.substring(4, 6))
+
+                if (r1 == -1 || g1 == -1 || b1 == -1)
+                    return this
 
                 var returnMessage = ""
                 //val lenght = newmessage.length.toDouble()
@@ -59,9 +56,15 @@ object HexColorLib {
                 val g1 = hexToRgb(startTag.substring(2, 4)) //76
                 val b1 = hexToRgb(startTag.substring(4, 6)) //55
 
+                if (r1 == -1 || g1 == -1 || b1 == -1)
+                    return this
+
                 val r2 = hexToRgb(endTag.substring(0, 2)) //255
                 val g2 = hexToRgb(endTag.substring(2, 4)) //1
                 val b2 = hexToRgb(endTag.substring(4, 6)) //1
+
+                if (r2 == -1 || g2 == -1 || b2 == -1)
+                    return this
 
                 var returnMessage = ""
                 val lenght = newmessage.length.toDouble() //31
@@ -106,18 +109,27 @@ object HexColorLib {
     }
 
     private fun hexToRgb(hex: String): Int {
-        return getNum(hex[0]) * 16 + getNum(hex[1])
+        val num1 = getNum(hex[0])
+        val num2 = getNum(hex[1])
+        if (num1 == -1 || num2 == -1)
+            return -1
+
+        return num1 * 16 + num2
     }
 
     private fun getNum(num: Char): Int {
-        return when (num) {
-            'A' -> 10
-            'B' -> 11
-            'C' -> 12
-            'D' -> 13
-            'E' -> 14
-            'F' -> 15
-            else -> num.digitToInt()
+        return try {
+            when (num) {
+                'A' -> 10
+                'B' -> 11
+                'C' -> 12
+                'D' -> 13
+                'E' -> 14
+                'F' -> 15
+                else -> num.digitToInt()
+            }
+        } catch (e : Exception){
+            -1
         }
     }
 
