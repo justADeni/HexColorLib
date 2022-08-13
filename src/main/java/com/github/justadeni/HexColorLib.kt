@@ -108,6 +108,8 @@ object HexColorLib {
         }
     }
 
+    //converts 2 char strings to 0-255 numbers
+    //or -1 in case of an error
     private fun hexToRgb(hex: String): Int {
         val num1 = getNum(hex[0])
         val num2 = getNum(hex[1])
@@ -117,6 +119,7 @@ object HexColorLib {
         return num1 * 16 + num2
     }
 
+    //converts one char to corresponding numerical value
     private fun getNum(num: Char): Int {
         return try {
             when (num) {
@@ -133,6 +136,8 @@ object HexColorLib {
         }
     }
 
+    //checks if number isn't over treshold (due to possible innacuracies
+    //and sets it to valid color values
     private fun checkBounds(num: Double): Double {
         return if (num > 255)
             255.0
