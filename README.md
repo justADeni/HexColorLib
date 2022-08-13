@@ -1,4 +1,3 @@
-[![](https://jitpack.io/v/justADeni/HexColorLib.svg)](https://jitpack.io/#justADeni/HexColorLib)
 # HexColorLib
 Simple library for using hex color codes in spigot strings
 
@@ -35,7 +34,7 @@ hex.color(example)
 ```
 - then sendMessage it to recipient
 ## To add as dependency
-
+- replace Tag with "1.3" for Java plugins, or "1.3-kotlin" for Kotlin plugins
 ### Maven
 ```xml
 <repository>
