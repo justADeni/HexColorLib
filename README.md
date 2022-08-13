@@ -4,11 +4,11 @@ Simple library for using hex color codes in spigot strings
 
 ## Examples
 
-`("#B511BAThis is example monocolor message").color()`
+`"#B511BAThis is example monocolor message"`
 
 ![monocolor](https://github.com/justADeni/HexColorLib/blob/master/src/resources/monocolor.png?raw=true)
 
-`("#B511BAThis is example multi-color message#11BAB4").color()`
+`"#B511BAThis is example multi-color message#11BAB4"`
 
 ![monocolor](https://github.com/justADeni/HexColorLib/blob/master/src/resources/multicolor.png?raw=true)
 
@@ -17,8 +17,22 @@ Simple library for using hex color codes in spigot strings
 	- one color code before message e.g. `#da0808` + msg
 	- or two color codes, one before and one after message e.g. `#08bada` + msg + `#1b9135`
 	- or old-school & characters with appropriate color codes anywhere in message
-	
-- on any such String, simply .color()
+
+
+## Implementation in Kotlin
+
+```kotlin
+val example = "#B511BAExample"
+example.color()
+```
+
+## Implementation in Java
+
+```java
+private static HexColorLib hex = HexColorLib.INSTANCE;
+String example = "#B511BAExample";
+hex.color(example)
+```
 
 ## To add as dependency
 
