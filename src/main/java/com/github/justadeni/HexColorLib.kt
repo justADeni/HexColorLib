@@ -16,12 +16,9 @@ object HexColorLib {
                 val startTag = messages[1].take(6)
                 val newmessage = this.replace("#$startTag", "")
 
-                val r1 = startTag.substring(0, 2).rgb()
-                val g1 = startTag.substring(2, 4).rgb()
-                val b1 = startTag.substring(4, 6).rgb()
-
-                if (listOf(r1,g1,b1).contains(-1.0))
-                    return this
+                val r1 = startTag.substring(0, 2).rgb() ?: return this
+                val g1 = startTag.substring(2, 4).rgb() ?: return this
+                val b1 = startTag.substring(4, 6).rgb() ?: return this
 
                 var returnMessage = ""
 
@@ -38,24 +35,21 @@ object HexColorLib {
                 val endTag = messages[2].take(6)
                 val newmessage = this.replace("#$startTag", "").replace("#$endTag", "")
 
-                var r1 = startTag.substring(0, 2).rgb() //171
-                var g1 = startTag.substring(2, 4).rgb() //76
-                var b1 = startTag.substring(4, 6).rgb() //55
+                var r1 = startTag.substring(0, 2).rgb() ?: return this//171
+                var g1 = startTag.substring(2, 4).rgb() ?: return this//76
+                var b1 = startTag.substring(4, 6).rgb() ?: return this//55
 
-                val r2 = endTag.substring(0, 2).rgb() //255
-                val g2 = endTag.substring(2, 4).rgb() //1
-                val b2 = endTag.substring(4, 6).rgb() //1
+                val r2 = endTag.substring(0, 2).rgb() ?: return this//255
+                val g2 = endTag.substring(2, 4).rgb() ?: return this//1
+                val b2 = endTag.substring(4, 6).rgb() ?: return this//1
 
-                if (listOf(r1,g1,b1,r2,g2,b2).contains(-1.0))
-                    return this
-
-                var returnMessage = ""
                 val lenght = newmessage.length.toDouble() //31
 
-                val incrementR = ((r1 - r2) / lenght)
-                val incrementG = ((g1 - g2) / lenght)
-                val incrementB = ((b1 - b2) / lenght)
+                val incrementR = (r1 - r2) / lenght
+                val incrementG = (g1 - g2) / lenght
+                val incrementB = (b1 - b2) / lenght
 
+                var returnMessage = ""
                 for (i in 0 until lenght.toInt()) {
                     returnMessage += ChatColor.of(
                         java.awt.Color(r1.toInt(), g1.toInt(), b1.toInt())
@@ -76,11 +70,11 @@ object HexColorLib {
 
     //converts 2 char strings to 0-255 numbers
     //or -1 in case of an error
-    private fun String.rgb(): Double {
+    private fun String.rgb(): Double? {
         return try {
             this.toInt(16).toDouble()
         } catch (e : java.lang.NumberFormatException) {
-            -1.0
+            null
         }
     }
 }
