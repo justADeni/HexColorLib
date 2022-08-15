@@ -5,6 +5,11 @@ import java.lang.Exception
 
 object HexColorLib {
 
+    /**
+     * Function takes in a String with 0,
+     * 1 or 2 hex color codes in #aabbcc format
+     * which it then uses to color the rest of the String
+     */
     fun String.color(): String {
 
         when (this.count{it == '#'}) {
