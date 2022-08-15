@@ -1,7 +1,6 @@
 package com.github.justadeni
 
 import net.md_5.bungee.api.ChatColor
-import java.lang.Exception
 
 object HexColorLib {
 
@@ -11,75 +10,47 @@ object HexColorLib {
      * which it then uses to color the rest of the String
      */
     fun String.color(): String {
-
         when (this.count{it == '#'}) {
             1 -> {
                 val messages = this.split("#")
-                var startTag = messages[1].take(6)
+                val startTag = messages[1].take(6)
                 val newmessage = this.replace("#$startTag", "")
-                startTag = startTag.uppercase()
 
-                val r1 = hexToRgb(startTag.substring(0, 2))
-                val g1 = hexToRgb(startTag.substring(2, 4))
-                val b1 = hexToRgb(startTag.substring(4, 6))
+                val r1 = startTag.substring(0, 2).rgb()
+                val g1 = startTag.substring(2, 4).rgb()
+                val b1 = startTag.substring(4, 6).rgb()
 
-                if (r1 == -1 || g1 == -1 || b1 == -1)
+                if (listOf(r1,g1,b1).contains(-1.0))
                     return this
 
                 var returnMessage = ""
-                //val lenght = newmessage.length.toDouble()
-
-                var currentR = r1.toDouble()
-                currentR = checkBounds(currentR)
-                var currentG = g1.toDouble()
-                currentG = checkBounds(currentG)
-                var currentB = b1.toDouble()
-                currentB = checkBounds(currentB)
 
                 returnMessage += ChatColor.of(
-                    java.awt.Color(
-                        currentR.toInt(),
-                        currentG.toInt(),
-                        currentB.toInt()
-                    )
+                    java.awt.Color(r1.toInt(), g1.toInt(), b1.toInt())
                 )
                 returnMessage += newmessage
 
                 return returnMessage
             }
             2 -> {
-
-
                 val messages = this.split("#")
-                var startTag = messages[1].take(6)
-                var endTag = messages[2].take(6)
+                val startTag = messages[1].take(6)
+                val endTag = messages[2].take(6)
                 val newmessage = this.replace("#$startTag", "").replace("#$endTag", "")
-                startTag = startTag.uppercase()
-                endTag = endTag.uppercase()
 
-                val r1 = hexToRgb(startTag.substring(0, 2)) //171
-                val g1 = hexToRgb(startTag.substring(2, 4)) //76
-                val b1 = hexToRgb(startTag.substring(4, 6)) //55
+                var r1 = startTag.substring(0, 2).rgb() //171
+                var g1 = startTag.substring(2, 4).rgb() //76
+                var b1 = startTag.substring(4, 6).rgb() //55
 
-                if (r1 == -1 || g1 == -1 || b1 == -1)
-                    return this
+                val r2 = endTag.substring(0, 2).rgb() //255
+                val g2 = endTag.substring(2, 4).rgb() //1
+                val b2 = endTag.substring(4, 6).rgb() //1
 
-                val r2 = hexToRgb(endTag.substring(0, 2)) //255
-                val g2 = hexToRgb(endTag.substring(2, 4)) //1
-                val b2 = hexToRgb(endTag.substring(4, 6)) //1
-
-                if (r2 == -1 || g2 == -1 || b2 == -1)
+                if (listOf(r1,g1,b1,r2,g2,b2).contains(-1.0))
                     return this
 
                 var returnMessage = ""
                 val lenght = newmessage.length.toDouble() //31
-
-                var currentR = r1.toDouble() //171
-                currentR = checkBounds(currentR)
-                var currentG = g1.toDouble() //76
-                currentG = checkBounds(currentG)
-                var currentB = b1.toDouble() //55
-                currentB = checkBounds(currentB)
 
                 val incrementR = ((r1 - r2) / lenght)
                 val incrementG = ((g1 - g2) / lenght)
@@ -87,24 +58,14 @@ object HexColorLib {
 
                 for (i in 0 until lenght.toInt()) {
                     returnMessage += ChatColor.of(
-                        java.awt.Color(
-                            currentR.toInt(),
-                            currentG.toInt(),
-                            currentB.toInt()
-                        )
+                        java.awt.Color(r1.toInt(), g1.toInt(), b1.toInt())
                     )
                     returnMessage += newmessage[i]
 
-                    currentR -= incrementR //255
-                    currentR = checkBounds(currentR)
-
-                    currentG -= incrementG //1
-                    currentG = checkBounds(currentG)
-
-                    currentB -= incrementB //1
-                    currentB = checkBounds(currentB)
+                    r1 -= incrementR //255
+                    g1 -= incrementG //1
+                    b1 -= incrementB //1
                 }
-
                 return returnMessage
             }
             else -> {
@@ -115,40 +76,11 @@ object HexColorLib {
 
     //converts 2 char strings to 0-255 numbers
     //or -1 in case of an error
-    private fun hexToRgb(hex: String): Int {
-        val num1 = getNum(hex[0])
-        val num2 = getNum(hex[1])
-        if (num1 == -1 || num2 == -1)
-            return -1
-
-        return num1 * 16 + num2
-    }
-
-    //converts one char to corresponding numerical value
-    private fun getNum(num: Char): Int {
+    private fun String.rgb(): Double {
         return try {
-            when (num) {
-                'A' -> 10
-                'B' -> 11
-                'C' -> 12
-                'D' -> 13
-                'E' -> 14
-                'F' -> 15
-                else -> num.digitToInt()
-            }
-        } catch (e : Exception){
-            -1
+            this.toInt(16).toDouble()
+        } catch (e : java.lang.NumberFormatException) {
+            -1.0
         }
-    }
-
-    //checks if number isn't over treshold (due to possible innacuracies
-    //and sets it to valid color values
-    private fun checkBounds(num: Double): Double {
-        return if (num > 255)
-            255.0
-        else if (num < 0)
-            0.0
-        else
-            num
     }
 }
