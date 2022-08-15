@@ -1,4 +1,5 @@
 [![](https://jitpack.io/v/justADeni/HexColorLib.svg)](https://jitpack.io/#justADeni/HexColorLib)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/d2333897b7144333b85ed5275816d962)](https://www.codacy.com/gh/justADeni/HexColorLib/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=justADeni/HexColorLib&amp;utm_campaign=Badge_Grade)
 # HexColorLib
 Simple library for using hex color codes in spigot strings
 ## Examples
