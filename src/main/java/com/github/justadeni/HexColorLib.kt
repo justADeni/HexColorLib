@@ -5,10 +5,11 @@ import net.md_5.bungee.api.ChatColor
 object HexColorLib {
 
     /**
-     * Function takes in a String with 0,
+     * takes in a String with 0,
      * 1 or 2 hex color codes in #aabbcc format
      * which it then uses to color the rest of the String
      */
+    @JvmStatic
     fun String.color(): String {
         when (this.count{it == '#'}) {
             1 -> {
@@ -35,15 +36,15 @@ object HexColorLib {
                 val endTag = messages[2].take(6)
                 val newmessage = this.replace("#$startTag", "").replace("#$endTag", "")
 
-                var r1 = startTag.substring(0, 2).rgb() ?: return this//171
-                var g1 = startTag.substring(2, 4).rgb() ?: return this//76
-                var b1 = startTag.substring(4, 6).rgb() ?: return this//55
+                var r1 = startTag.substring(0, 2).rgb() ?: return this
+                var g1 = startTag.substring(2, 4).rgb() ?: return this
+                var b1 = startTag.substring(4, 6).rgb() ?: return this
 
-                val r2 = endTag.substring(0, 2).rgb() ?: return this//255
-                val g2 = endTag.substring(2, 4).rgb() ?: return this//1
-                val b2 = endTag.substring(4, 6).rgb() ?: return this//1
+                val r2 = endTag.substring(0, 2).rgb() ?: return this
+                val g2 = endTag.substring(2, 4).rgb() ?: return this
+                val b2 = endTag.substring(4, 6).rgb() ?: return this
 
-                val lenght = newmessage.length.toDouble() //31
+                val lenght = newmessage.length.toDouble()
 
                 val incrementR = (r1 - r2) / lenght
                 val incrementG = (g1 - g2) / lenght
@@ -56,9 +57,9 @@ object HexColorLib {
                     )
                     returnMessage += newmessage[i]
 
-                    r1 -= incrementR //255
-                    g1 -= incrementG //1
-                    b1 -= incrementB //1
+                    r1 -= incrementR
+                    g1 -= incrementG
+                    b1 -= incrementB
                 }
                 return returnMessage
             }
@@ -68,13 +69,15 @@ object HexColorLib {
         }
     }
 
-    //converts 2 char strings to 0-255 numbers
-    //or -1 in case of an error
+    /**
+     * converts 2 char strings to 0-255 numbers
+     * or 0 in case of an error
+     */
     private fun String.rgb(): Double? {
         return try {
             this.toInt(16).toDouble()
         } catch (e : java.lang.NumberFormatException) {
-            null
+            0.0
         }
     }
 }

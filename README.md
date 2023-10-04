@@ -5,11 +5,11 @@ Simple library for using hex color codes in spigot strings
 ## Examples
 `"#B511BAThis is example monocolor message"`
 
-![monocolor](https://github.com/justADeni/HexColorLib/blob/master/src/resources/monocolor.png?raw=true)
+![monocolor](https://github.com/justADeni/HexColorLib/blob/master/img/monocolor.png?raw=true)
 
 `"#B511BAThis is example multi-color message#11BAB4"`
 
-![monocolor](https://github.com/justADeni/HexColorLib/blob/master/src/resources/multicolor.png?raw=true)
+![monocolor](https://github.com/justADeni/HexColorLib/blob/master/img/multicolor.png?raw=true)
 ## Usage
 - The string has to either contain
     - one color code before message e.g. `#da0808` + msg
@@ -29,40 +29,35 @@ hex.color(example)
 ```
 - then store it or sendMessage to recipient
 ## To add as dependency
-- replace Tag with version at the top
-- if you already have kotlin then only include top repository and top dependency
+- shade this into your plugin or copy-paste this whole class into your project
+- if you include it with maven, replace Tag with version at the top
 ### Maven
 ```xml
 <repository>
 	<id>jitpack.io</id>
 	<url>https://jitpack.io</url>
 </repository>
-<repository>
-      <id>sonatype</id>
-      <url>https://oss.sonatype.org/content/groups/public/</url>
-</repository>
-  
+```
+```xml
 <dependency>
 	<groupId>com.github.justADeni</groupId>
 	<artifactId>HexColorLib</artifactId>
 	<version>Tag</version>
-</dependency>
-<dependency>
-      <groupId>org.jetbrains.kotlin</groupId>
-      <artifactId>kotlin-stdlib-jdk8</artifactId>
-      <version>${kotlin.version}</version>
+        <scope>compile</scope>
 </dependency>
 ```
 
 ### Gradle
-```gradle
+```kotlin
 repositories {
 	maven { url 'https://jitpack.io' }
-	jcenter()
-}
-
-dependencies {
-	implementation 'com.github.justADeni:HexColorLib:Tag'
-	compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }
 ```
+```kotlin
+dependencies {
+	compile 'com.github.justADeni:HexColorLib:Tag'
+}
+```
+## Dependencies
+
+If you aren't using Kotlin, you need to add Kotlin runtime for this to work. For example, [kLib](https://github.com/zorbeytorunoglu/kLib) or [kotlin-stdlib](https://www.spigotmc.org/resources/kotlin-stdlib.80808/) 
